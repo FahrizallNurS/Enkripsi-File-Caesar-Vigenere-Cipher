@@ -1,0 +1,80 @@
+==== HASIL BRUTE FORCE CAESAR ====
+
+[Shift 0]
+Ciphertext: zicx itptqw suawcewa iczjp opvw hmtpvw bmdaiajsqc qcetubmdiiix mdzzyeay uqbt uucowjvqzid zwcqqdpay rqfwmh ztqhqa
+
+[Shift 1]
+Ciphertext: yhbw hsospv rtzvbdvz hbyio nouv glsouv alczhzirpb pbdstalchhhw lcyyxdzx tpas ttbnviupyhc yvbppcozx qpevlg yspgpz
+
+[Shift 2]
+Ciphertext: xgav grnrou qsyuacuy gaxhn mntu fkrntu zkbygyhqoa oacrszkbgggv kbxxwcyw sozr ssamuhtoxgb xuaoobnyw podukf xrofoy
+
+[Shift 3]
+Ciphertext: wfzu fqmqnt prxtzbtx fzwgm lmst ejqmst yjaxfxgpnz nzbqryjafffu jawwvbxv rnyq rrzltgsnwfa wtznnamxv onctje wqnenx
+
+[Shift 4]
+Ciphertext: veyt eplpms oqwsyasw eyvfl klrs diplrs xizwewfomy myapqxizeeet izvvuawu qmxp qqyksfrmvez vsymmzlwu nmbsid vpmdmw
+
+[Shift 5]
+Ciphertext: udxs dokolr npvrxzrv dxuek jkqr chokqr whyvdvenlx lxzopwhyddds hyuutzvt plwo ppxjreqludy urxllykvt mlarhc uolclv
+
+[Shift 6]
+Ciphertext: tcwr cnjnkq mouqwyqu cwtdj ijpq bgnjpq vgxucudmkw kwynovgxcccr gxttsyus okvn oowiqdpktcx tqwkkxjus lkzqgb tnkbku
+
+[Shift 7]
+Ciphertext: sbvq bmimjp lntpvxpt bvsci hiop afmiop ufwtbtcljv jvxmnufwbbbq fwssrxtr njum nnvhpcojsbw spvjjwitr kjypfa smjajt
+
+[Shift 8]
+Ciphertext: raup alhlio kmsouwos aurbh ghno zelhno tevsasbkiu iuwlmtevaaap evrrqwsq mitl mmugobnirav rouiivhsq jixoez rlizis
+
+[Shift 9]
+Ciphertext: qzto zkgkhn jlrntvnr ztqag fgmn ydkgmn sdurzrajht htvklsduzzzo duqqpvrp lhsk lltfnamhqzu qnthhugrp ihwndy qkhyhr
+
+[Shift 10]
+Ciphertext: pysn yjfjgm ikqmsumq yspzf eflm xcjflm rctqyqzigs gsujkrctyyyn ctppouqo kgrj kksemzlgpyt pmsggtfqo hgvmcx pjgxgq
+
+[Shift 11]
+Ciphertext: oxrm xieifl hjplrtlp xroye dekl wbiekl qbspxpyhfr frtijqbsxxxm bsoontpn jfqi jjrdlykfoxs olrffsepn gfulbw oifwfp
+
+[Shift 12]
+Ciphertext: nwql whdhek giokqsko wqnxd cdjk vahdjk parowoxgeq eqshiparwwwl arnnmsom ieph iiqckxjenwr nkqeerdom fetkav nheveo
+
+[Shift 13]
+Ciphertext: mvpk vgcgdj fhnjprjn vpmwc bcij uzgcij ozqnvnwfdp dprghozqvvvk zqmmlrnl hdog hhpbjwidmvq mjpddqcnl edsjzu mgdudn
+
+[Shift 14]
+Ciphertext: luoj ufbfci egmioqim uolvb abhi tyfbhi nypmumveco coqfgnypuuuj ypllkqmk gcnf ggoaivhclup lioccpbmk dcriyt lfctcm
+
+[Shift 15]
+Ciphertext: ktni teaebh dflhnphl tnkua zagh sxeagh mxoltludbn bnpefmxottti xokkjplj fbme ffnzhugbkto khnbboalj cbqhxs kebsbl
+
+[Shift 16]
+Ciphertext: jsmh sdzdag cekgmogk smjtz yzfg rwdzfg lwnksktcam amodelwnsssh wnjjioki eald eemygtfajsn jgmaanzki bapgwr jdarak
+
+[Shift 17]
+Ciphertext: irlg rcyczf bdjflnfj rlisy xyef qvcyef kvmjrjsbzl zlncdkvmrrrg vmiihnjh dzkc ddlxfsezirm iflzzmyjh azofvq iczqzj
+
+[Shift 18]
+Ciphertext: hqkf qbxbye aciekmei qkhrx wxde pubxde juliqirayk ykmbcjulqqqf ulhhgmig cyjb cckwerdyhql hekyylxig zyneup hbypyi
+
+[Shift 19]
+Ciphertext: gpje pawaxd zbhdjldh pjgqw vwcd otawcd itkhphqzxj xjlabitkpppe tkggflhf bxia bbjvdqcxgpk gdjxxkwhf yxmdto gaxoxh
+
+[Shift 20]
+Ciphertext: foid ozvzwc yagcikcg oifpv uvbc nszvbc hsjgogpywi wikzahsjoood sjffekge awhz aaiucpbwfoj fciwwjvge xwlcsn fzwnwg
+
+[Shift 21]
+Ciphertext: enhc nyuyvb xzfbhjbf nheou tuab mryuab grifnfoxvh vhjyzgrinnnc rieedjfd zvgy zzhtboaveni ebhvviufd wvkbrm eyvmvf
+
+[Shift 22]
+Ciphertext: dmgb mxtxua wyeagiae mgdnt stza lqxtza fqhemenwug ugixyfqhmmmb qhddciec yufx yygsanzudmh daguuhtec vujaql dxulue
+
+[Shift 23]
+Ciphertext: clfa lwswtz vxdzfhzd lfcms rsyz kpwsyz epgdldmvtf tfhwxepgllla pgccbhdb xtew xxfrzmytclg czfttgsdb utizpk cwtktd
+
+[Shift 24]
+Ciphertext: bkez kvrvsy uwcyegyc keblr qrxy jovrxy dofckcluse segvwdofkkkz ofbbagca wsdv wweqylxsbkf byessfrca tshyoj bvsjsc
+
+[Shift 25]
+Ciphertext: ajdy juqurx tvbxdfxb jdakq pqwx inuqwx cnebjbktrd rdfuvcnejjjy neaazfbz vrcu vvdpxkwraje axdrreqbz srgxni aurirb
+

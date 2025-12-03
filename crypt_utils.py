@@ -1,42 +1,19 @@
-# crypt_utils.py
+#mengecek apakah karakter adalah huruf 
+def _is_alpha(ch):
+    return 'A' <= ch <= 'Z' or 'a' <= ch <= 'z'
+
+#mengubah huruf menjadi angka 
 def letter_index(ch: str) -> int:
     return ord(ch.upper()) - ord('A')
 
+#reverse 
 def index_to_letter(i: int, is_upper=True) -> str:
     base = ord('A') if is_upper else ord('a')
     return chr((i % 26) + base)
 
-def vigenere_encrypt(plaintext: str, key: str) -> str:
-    key = key.upper()
-    res = []
-    ki = 0
-    for ch in plaintext:
-        if ch.isalpha():
-            p = letter_index(ch)
-            k = letter_index(key[ki % len(key)])
-            c = (p + k) % 26
-            res.append(index_to_letter(c, ch.isupper()))
-            ki += 1
-        else:
-            res.append(ch)
-    return ''.join(res)
-
-def vigenere_decrypt(ciphertext: str, key: str) -> str:
-    key = key.upper()
-    res = []
-    ki = 0
-    for ch in ciphertext:
-        if ch.isalpha():
-            c = letter_index(ch)
-            k = letter_index(key[ki % len(key)])
-            p = (c - k) % 26
-            res.append(index_to_letter(p, ch.isupper()))
-            ki += 1
-        else:
-            res.append(ch)
-    return ''.join(res)
-
+#geser huruf sejumlah 'shift'
 def caesar_encrypt(text: str, shift: int) -> str:
+    shift = shift % 26
     out = []
     for ch in text:
         if ch.isalpha():
@@ -49,7 +26,42 @@ def caesar_encrypt(text: str, shift: int) -> str:
 def caesar_decrypt(text: str, shift: int) -> str:
     return caesar_encrypt(text, (-shift) % 26)
 
-def encrypt_file(input_path: str, output_path: str, vigenere_key: str, caesar_shift: int) -> None:
+def vigenere_encrypt(plaintext: str, key: str) -> str:
+    key_clean = ''.join(ch for ch in key if ch.isalpha()).upper()
+    if not key_clean:
+        raise ValueError("Vigenere key must contain letters.")
+    out = []
+    ki = 0
+    klen = len(key_clean)
+    for ch in plaintext:
+        if ch.isalpha():
+            shift = letter_index(key_clean[ki % klen])
+            base = ord('A') if ch.isupper() else ord('a')
+            out.append(chr((ord(ch) - base + shift) % 26 + base))
+            ki += 1
+        else:
+            out.append(ch)
+    return ''.join(out)
+
+def vigenere_decrypt(ciphertext: str, key: str) -> str:
+    key_clean = ''.join(ch for ch in key if ch.isalpha()).upper()
+    if not key_clean:
+        raise ValueError("Vigenere key must contain letters.")
+    out = []
+    ki = 0
+    klen = len(key_clean)
+    for ch in ciphertext:
+        if ch.isalpha():
+            shift = letter_index(key_clean[ki % klen])
+            base = ord('A') if ch.isupper() else ord('a')
+            out.append(chr((ord(ch) - base - shift) % 26 + base))
+            ki += 1
+        else:
+            out.append(ch)
+    return ''.join(out)
+
+#proses enkripsi dua tahap
+def encrypt_file_vig_then_caesar(input_path: str, output_path: str, vigenere_key: str, caesar_shift: int) -> None:
     with open(input_path, 'r', encoding='utf-8') as f:
         plaintext = f.read()
     step1 = vigenere_encrypt(plaintext, vigenere_key)
@@ -57,7 +69,8 @@ def encrypt_file(input_path: str, output_path: str, vigenere_key: str, caesar_sh
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(step2)
 
-def decrypt_file(input_path: str, output_path: str, vigenere_key: str, caesar_shift: int) -> None:
+#reverse
+def decrypt_file_caesar_then_vig(input_path: str, output_path: str, caesar_shift: int, vigenere_key: str) -> None:
     with open(input_path, 'r', encoding='utf-8') as f:
         cipher = f.read()
     step1 = caesar_decrypt(cipher, caesar_shift)

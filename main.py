@@ -1,99 +1,89 @@
-# main.py
 import os
-from crypt_utils import encrypt_file, decrypt_file
-from attack_utils import run_full_attack
+from crypt_utils import encrypt_file_vig_then_caesar, decrypt_file_caesar_then_vig
+from attack_utils import run_full_bruteforce
 
-def input_path(prompt):
-    return input(prompt).strip()
+def input_path(msg):
+    return input(msg).strip()
 
 def validate_caesar_shift(s):
     try:
-        iv = int(s)
-    except ValueError:
+        n = int(s)
+        return n if 0 <= n <= 25 else None
+    except:
         return None
-    if 0 <= iv <= 25:
-        return iv
-    return None
+
+def validate_vig_key(k, length=3):
+    k2 = ''.join(ch for ch in k if ch.isalpha())
+    return k2.upper() if len(k2) == length else None
 
 def do_encrypt():
-    print("\n=== ENCRYPTION (Vigenere -> Caesar) ===")
-    infile = input_path("Masukkan path file .txt: ")
+    print("\n=== ENCRYPT (Vigenere -> Caesar) ===")
+    infile = input_path("Masukkan file .txt (path): ")
     if not os.path.isfile(infile):
-        print("[ERROR] File tidak ditemukan:", infile)
+        print("[ERROR] File tidak ditemukan.")
         return
-
-    vkey = input("Masukkan kunci Vigenere (A-Z): ").strip()
-    s = input("Masukkan kunci Caesar (0-25): ").strip()
-    shift = validate_caesar_shift(s)
+    vkey = input("Masukkan kunci Vigenere (3 letters): ").strip()
+    vkey_ok = validate_vig_key(vkey, 3)
+    if not vkey_ok:
+        print("[ERROR] Kunci Vigenere tidak valid (harus 3 huruf).")
+        return
+    shift = validate_caesar_shift(input("Masukkan kunci Caesar (0-25): ").strip())
     if shift is None:
         print("[ERROR] Caesar shift tidak valid.")
         return
-
     outfile = infile + ".enc"
     try:
-        encrypt_file(infile, outfile, vkey, shift)
-        print("[OK] Enkripsi selesai →", outfile)
+        encrypt_file_vig_then_caesar(infile, outfile, vkey_ok, shift)
     except Exception as e:
-        print("[ERROR] Gagal:", e)
+        print("[ERROR] Enkripsi gagal:", e)
+        return
+    print("[OK] Enkripsi selesai →", outfile)
 
 def do_decrypt():
-    print("\n=== DECRYPTION (Caesar -> Vigenere) ===")
-    infile = input_path("Masukkan path file .enc: ")
+    print("\n=== DECRYPT (Caesar -> Vigenere) ===")
+    infile = input_path("Masukkan file .enc (path): ")
     if not os.path.isfile(infile):
-        print("[ERROR] File tidak ditemukan:", infile)
+        print("[ERROR] File tidak ditemukan.")
         return
-
-    s = input("Masukkan kunci Caesar asli (0-25): ").strip()
-    shift = validate_caesar_shift(s)
+    shift = validate_caesar_shift(input("Masukkan kunci Caesar (0-25): ").strip())
     if shift is None:
         print("[ERROR] Caesar shift tidak valid.")
         return
-
-    vkey = input("Masukkan kunci Vigenere asli (A-Z): ").strip()
+    vkey = input("Masukkan kunci Vigenere (3 letters): ").strip()
+    vkey_ok = validate_vig_key(vkey, 3)
+    if not vkey_ok:
+        print("[ERROR] Kunci Vigenere tidak valid (3 letters).")
+        return
     outfile = infile + ".dec"
     try:
-        decrypt_file(infile, outfile, vkey, shift)
-        print("[OK] Dekripsi selesai →", outfile)
+        decrypt_file_caesar_then_vig(infile, outfile, shift, vkey_ok)
     except Exception as e:
-        print("[ERROR] Gagal:", e)
+        print("[ERROR] Dekripsi gagal:", e)
+        return
+    print("[OK] Dekripsi selesai →", outfile)
 
 def do_attack():
-    print("\n=== ATTACK MODE (Brute-force Caesar + Vigenere len=2) ===")
-    infile = input_path("Masukkan path file .enc: ")
+    print("\n=== ATTACK (FULL NESTED BRUTE-FORCE) ===")
+    infile = input_path("Masukkan file .enc (path): ")
     if not os.path.isfile(infile):
-        print("[ERROR] File tidak ditemukan:", infile)
+        print("[ERROR] File tidak ditemukan.")
         return
-
-    # read ciphertext
-    with open(infile, "r", encoding="utf-8") as f:
+    with open(infile, 'r', encoding='utf-8') as f:
         cipher = f.read()
 
-    # output directory (default)
     outdir = infile + "_attack"
-    print(f"[*] Output folder: {outdir}")
-    print("[*] Caesar brute-force: 26 percobaan")
-    print("[*] Vigenere brute-force: key length = 2 (will try length 1 and 2)")
-    print("[*] Total percobaan ≈ 26 x (26 + 26^2) = 26 x 702 = 18,252")
-    print("[*] Harap tunggu, proses sedang berjalan...")
-
-    try:
-        # fixed key length = 2 (tries len 1 and 2)
-        run_full_attack(cipher, outdir, max_vig_len=2)
-        print("\n[OK] Attack selesai!")
-        print("Periksa folder hasil:", outdir)
-    except Exception as e:
-        print("[ERROR] Attack gagal:", e)
+    print(f"Output akan disimpan di folder: {outdir}")
+    print("Mulai brute-force full (26 shifts × 17,576 keys = 456,976 attempts). This may take a while.")
+    run_full_bruteforce(cipher, outdir)
 
 def main():
-    print("=== Interactive Vigenere + Caesar Tool ===")
     while True:
-        print("\nPilih mode:")
-        print("  1. Encrypt (Vigenere -> Caesar)")
-        print("  2. Decrypt (Caesar -> Vigenere)")
-        print("  3. Attack Mode (Brute-force)")
-        print("  4. Exit")
-
-        choice = input("Masukkan pilihan (1/2/3/4): ").strip()
+        print("\n=== Vigenere + Caesar Toolkit ===")
+        print("1) Encrypt (Vigenere -> Caesar)")
+        print("2) Decrypt (Caesar -> Vigenere)")
+        print("3) Attack (full nested brute-force)")
+        print("4) Exit")
+        choice = input("Pilih: ").strip()
         if choice == '1':
             do_encrypt()
         elif choice == '2':
